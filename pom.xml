@@ -14,7 +14,7 @@
 
 	<modules>
 		<module>spring-cloud-starter-stream-sink-redis</module>
-		<module>redis-app-dependencies</module>
+		<module>redis-pubsub-app-dependencies</module>
 		<module>redis-app-starters-test-support</module>
 	</modules>
 
@@ -22,7 +22,7 @@
 		<dependencies>
 			<dependency>
 				<groupId>org.springframework.cloud.stream.app</groupId>
-				<artifactId>redis-app-dependencies</artifactId>
+				<artifactId>redis-pubsub-app-dependencies</artifactId>
 				<version>1.1.0.BUILD-SNAPSHOT</version>
 				<type>pom</type>
 				<scope>import</scope>
