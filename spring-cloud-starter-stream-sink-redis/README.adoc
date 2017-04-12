@@ -29,7 +29,9 @@ $$spring.redis.pool.min-idle$$:: $$Target for the minimum number of idle connect
 $$spring.redis.port$$:: $$Redis server port.$$ *($$Integer$$, default: `$$6379$$`)*
 $$spring.redis.sentinel.master$$:: $$Name of Redis server.$$ *($$String$$, default: `$$<none>$$`)*
 $$spring.redis.sentinel.nodes$$:: $$Comma-separated list of host:port pairs.$$ *($$String$$, default: `$$<none>$$`)*
+$$spring.redis.ssl$$:: $$Enable SSL.$$ *($$Boolean$$, default: `$$false$$`)*
 $$spring.redis.timeout$$:: $$Connection timeout in milliseconds.$$ *($$Integer$$, default: `$$0$$`)*
+$$spring.redis.url$$:: $$Redis url, which will overrule host, port and password if set.$$ *($$String$$, default: `$$<none>$$`)*
 //end::configuration-properties[]
 
 //end::ref-doc[]

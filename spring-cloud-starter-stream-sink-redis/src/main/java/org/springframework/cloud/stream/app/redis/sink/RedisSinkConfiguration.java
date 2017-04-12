@@ -51,24 +51,33 @@ public class RedisSinkConfiguration {
 	@Autowired
 	private RedisSinkProperties redisSinkProperties;
 
-	@Bean
-	@ServiceActivator(inputChannel = Sink.INPUT)
-	public MessageHandler redisSinkMessageHandler() {
-		if (this.redisSinkProperties.isKey()) {
-			RedisStoreWritingMessageHandler redisStoreWritingMessageHandler = new RedisStoreWritingMessageHandler(
-					this.redisConnectionFactory);
-			redisStoreWritingMessageHandler.setKeyExpression(this.redisSinkProperties.keyExpression());
-			return redisStoreWritingMessageHandler;
-		}
-		else if (this.redisSinkProperties.isQueue()) {
-			return new RedisQueueOutboundChannelAdapter(this.redisSinkProperties.queueExpression(),
-					this.redisConnectionFactory);
-		}
-		else { // must be topic
-			RedisPublishingMessageHandler redisPublishingMessageHandler = new RedisPublishingMessageHandler(
-					this.redisConnectionFactory);
-			redisPublishingMessageHandler.setTopicExpression(this.redisSinkProperties.topicExpression());
-			return redisPublishingMessageHandler;
+	static class Config {
+
+		@Autowired
+		private RedisConnectionFactory redisConnectionFactory;
+
+		@Autowired
+		private RedisSinkProperties redisSinkProperties;
+
+		@Bean
+		@ServiceActivator(inputChannel = Sink.INPUT)
+		public MessageHandler redisSinkMessageHandler() {
+			if (this.redisSinkProperties.isKey()) {
+				RedisStoreWritingMessageHandler redisStoreWritingMessageHandler = new RedisStoreWritingMessageHandler(
+						this.redisConnectionFactory);
+				redisStoreWritingMessageHandler.setKeyExpression(this.redisSinkProperties.keyExpression());
+				return redisStoreWritingMessageHandler;
+			}
+			else if (this.redisSinkProperties.isQueue()) {
+				return new RedisQueueOutboundChannelAdapter(this.redisSinkProperties.queueExpression(),
+						this.redisConnectionFactory);
+			}
+			else { // must be topic
+				RedisPublishingMessageHandler redisPublishingMessageHandler = new RedisPublishingMessageHandler(
+						this.redisConnectionFactory);
+				redisPublishingMessageHandler.setTopicExpression(this.redisSinkProperties.topicExpression());
+				return redisPublishingMessageHandler;
+			}
 		}
 	}
 

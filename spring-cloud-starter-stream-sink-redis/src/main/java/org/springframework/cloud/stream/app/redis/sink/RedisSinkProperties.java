@@ -25,6 +25,7 @@ import org.springframework.expression.Expression;
 import org.springframework.expression.common.LiteralExpression;
 import org.springframework.expression.spel.standard.SpelExpressionParser;
 import org.springframework.util.StringUtils;
+import org.springframework.validation.annotation.Validated;
 
 /**
  * Used to configure those Redis Sink module options that are not related to connecting to Redis.
@@ -33,6 +34,7 @@ import org.springframework.util.StringUtils;
  * @author Mark Pollack
  */
 @ConfigurationProperties("redis")
+@Validated
 public class RedisSinkProperties {
 
 	private final SpelExpressionParser parser = new SpelExpressionParser();
