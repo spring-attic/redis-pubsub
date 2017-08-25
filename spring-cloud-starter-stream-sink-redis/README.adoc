@@ -3,6 +3,28 @@
 
 This module sends messages to Redis store.
 
+== Input
+
+=== Headers
+
+* `content-type: text/plain`
+
+=== Payload
+
+* `String`
+
+=== Headers
+
+* `content-type: application/octet-stream`
+
+=== Payload
+
+* `byte[]`
+
+== Output
+
+N/A
+
 == Options
 
 The **$$redis$$** $$sink$$ has the following options:
@@ -35,9 +57,25 @@ $$spring.redis.url$$:: $$Redis url, which will overrule host, port and password 
 //end::configuration-properties[]
 
 //end::ref-doc[]
-
 == Build
 
 ```
-$ mvn clean package
+$ ./mvnw clean install -PgenerateApps
+$ cd apps
+```
+You can find the corresponding binder based projects here.
+You can then cd into one of the folders and build it:
+```
+$ ./mvnw clean package
+```
+
+== Examples
+
+```
+java -jar redis-pubsub-sink.jar --redis.queue=
+java -jar redis-pubsub-sink.jar --redis.queueExpression=
+java -jar redis-pubsub-sink.jar --redis.key=
+java -jar redis-pubsub-sink.jar --redis.keyExpression=
+java -jar redis-pubsub-sink.jar --redis.topic=
+java -jar redis-pubsub-sink.jar --redis.topicExpression=
 ```
