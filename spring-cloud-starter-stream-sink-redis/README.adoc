@@ -56,7 +56,6 @@ $$spring.redis.timeout$$:: $$Connection timeout in milliseconds.$$ *($$Integer$$
 $$spring.redis.url$$:: $$Redis url, which will overrule host, port and password if set.$$ *($$String$$, default: `$$<none>$$`)*
 //end::configuration-properties[]
 
-//end::ref-doc[]
 == Build
 
 ```
@@ -79,3 +78,4 @@ java -jar redis-pubsub-sink.jar --redis.keyExpression=
 java -jar redis-pubsub-sink.jar --redis.topic=
 java -jar redis-pubsub-sink.jar --redis.topicExpression=
 ```
+//end::ref-doc[]
