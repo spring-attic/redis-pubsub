@@ -15,17 +15,16 @@
 
 package org.springframework.cloud.stream.app.redis.sink;
 
-import java.util.Arrays;
-import java.util.Collections;
-
-import javax.validation.constraints.AssertTrue;
-
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.expression.Expression;
 import org.springframework.expression.common.LiteralExpression;
 import org.springframework.expression.spel.standard.SpelExpressionParser;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.annotation.Validated;
+
+import javax.validation.constraints.AssertTrue;
+import java.util.Arrays;
+import java.util.Collections;
 
 /**
  * Used to configure those Redis Sink module options that are not related to connecting to Redis.
@@ -105,15 +104,15 @@ public class RedisSinkProperties {
 		this.topicExpression = topicExpression;
 	}
 
-	/*default*/ boolean isKey() {
+	public boolean isKey() {
 		return StringUtils.hasText(key) || keyExpression != null;
 	}
 
-	/*default*/ boolean isQueue() {
+	public boolean isQueue() {
 		return StringUtils.hasText(queue) || queueExpression != null;
 	}
 
-	/*default*/ public boolean isTopic() {
+	public boolean isTopic() {
 		return StringUtils.hasText(topic) || topicExpression != null;
 	}
 
