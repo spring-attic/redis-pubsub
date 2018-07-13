@@ -54,13 +54,13 @@ public class RedisSinkConfiguration {
 	@Bean
 	@ServiceActivator(inputChannel = Sink.INPUT)
 	public MessageHandler redisSinkMessageHandler() {
-		if (redisSinkProperties.isKey()) {
+		if (redisSinkProperties.isKeyPresent()) {
 			RedisStoreWritingMessageHandler redisStoreWritingMessageHandler = new RedisStoreWritingMessageHandler(
 					this.redisConnectionFactory);
 			redisStoreWritingMessageHandler.setKeyExpression(this.redisSinkProperties.keyExpression());
 			return redisStoreWritingMessageHandler;
 		}
-		else if (this.redisSinkProperties.isQueue()) {
+		else if (this.redisSinkProperties.isQueuePresent()) {
 			return new RedisQueueOutboundChannelAdapter(this.redisSinkProperties.queueExpression(),
 					this.redisConnectionFactory);
 		}

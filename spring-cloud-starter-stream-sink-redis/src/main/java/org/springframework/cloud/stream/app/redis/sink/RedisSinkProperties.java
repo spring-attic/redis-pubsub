@@ -15,28 +15,27 @@
 
 package org.springframework.cloud.stream.app.redis.sink;
 
+import java.util.Arrays;
+import java.util.Collections;
+
+import javax.validation.constraints.AssertTrue;
+
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.expression.Expression;
 import org.springframework.expression.common.LiteralExpression;
-import org.springframework.expression.spel.standard.SpelExpressionParser;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.annotation.Validated;
-
-import javax.validation.constraints.AssertTrue;
-import java.util.Arrays;
-import java.util.Collections;
 
 /**
  * Used to configure those Redis Sink module options that are not related to connecting to Redis.
  *
  * @author Eric Bottard
  * @author Mark Pollack
+ * @author Artem Bilan
  */
 @ConfigurationProperties("redis")
 @Validated
 public class RedisSinkProperties {
-
-	private final SpelExpressionParser parser = new SpelExpressionParser();
 
 	/**
 	 * A SpEL expression to use for topic.
@@ -104,15 +103,15 @@ public class RedisSinkProperties {
 		this.topicExpression = topicExpression;
 	}
 
-	public boolean isKey() {
+	boolean isKeyPresent() {
 		return StringUtils.hasText(key) || keyExpression != null;
 	}
 
-	public boolean isQueue() {
+	boolean isQueuePresent() {
 		return StringUtils.hasText(queue) || queueExpression != null;
 	}
 
-	public boolean isTopic() {
+	boolean isTopicPresent() {
 		return StringUtils.hasText(topic) || topicExpression != null;
 	}
 
@@ -145,7 +144,7 @@ public class RedisSinkProperties {
 	@AssertTrue(message = "Exactly one of 'queue', 'queueExpression', 'key', 'keyExpression', "
 			+ "'topic' and 'topicExpression' must be set")
 	public boolean isMutuallyExclusive() {
-		Object[] props = new Object[]{queue, queueExpression, key, keyExpression, topic, topicExpression};
+		Object[] props = new Object[] { queue, queueExpression, key, keyExpression, topic, topicExpression };
 		return (props.length - 1) == Collections.frequency(Arrays.asList(props), null);
 	}
 
