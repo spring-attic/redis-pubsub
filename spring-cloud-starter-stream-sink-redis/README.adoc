@@ -41,11 +41,13 @@ $$spring.redis.host$$:: $$Redis server host.$$ *($$String$$, default: `$$localho
 $$spring.redis.jedis.pool.max-active$$:: $$Maximum number of connections that can be allocated by the pool at a given time. Use a negative value for no limit.$$ *($$Integer$$, default: `$$8$$`)*
 $$spring.redis.jedis.pool.max-idle$$:: $$Maximum number of "idle" connections in the pool. Use a negative value to indicate an unlimited number of idle connections.$$ *($$Integer$$, default: `$$8$$`)*
 $$spring.redis.jedis.pool.max-wait$$:: $$Maximum amount of time a connection allocation should block before throwing an exception when the pool is exhausted. Use a negative value to block indefinitely.$$ *($$Duration$$, default: `$$-1ms$$`)*
-$$spring.redis.jedis.pool.min-idle$$:: $$Target for the minimum number of idle connections to maintain in the pool. This setting only has an effect if it is positive.$$ *($$Integer$$, default: `$$0$$`)*
+$$spring.redis.jedis.pool.min-idle$$:: $$Target for the minimum number of idle connections to maintain in the pool. This setting only has an effect if both it and time between eviction runs are positive.$$ *($$Integer$$, default: `$$0$$`)*
+$$spring.redis.jedis.pool.time-between-eviction-runs$$:: $$Time between runs of the idle object evictor thread. When positive, the idle object evictor thread starts, otherwise no idle object eviction is performed.$$ *($$Duration$$, default: `$$<none>$$`)*
 $$spring.redis.lettuce.pool.max-active$$:: $$Maximum number of connections that can be allocated by the pool at a given time. Use a negative value for no limit.$$ *($$Integer$$, default: `$$8$$`)*
 $$spring.redis.lettuce.pool.max-idle$$:: $$Maximum number of "idle" connections in the pool. Use a negative value to indicate an unlimited number of idle connections.$$ *($$Integer$$, default: `$$8$$`)*
 $$spring.redis.lettuce.pool.max-wait$$:: $$Maximum amount of time a connection allocation should block before throwing an exception when the pool is exhausted. Use a negative value to block indefinitely.$$ *($$Duration$$, default: `$$-1ms$$`)*
-$$spring.redis.lettuce.pool.min-idle$$:: $$Target for the minimum number of idle connections to maintain in the pool. This setting only has an effect if it is positive.$$ *($$Integer$$, default: `$$0$$`)*
+$$spring.redis.lettuce.pool.min-idle$$:: $$Target for the minimum number of idle connections to maintain in the pool. This setting only has an effect if both it and time between eviction runs are positive.$$ *($$Integer$$, default: `$$0$$`)*
+$$spring.redis.lettuce.pool.time-between-eviction-runs$$:: $$Time between runs of the idle object evictor thread. When positive, the idle object evictor thread starts, otherwise no idle object eviction is performed.$$ *($$Duration$$, default: `$$<none>$$`)*
 $$spring.redis.password$$:: $$Login password of the redis server.$$ *($$String$$, default: `$$<none>$$`)*
 $$spring.redis.port$$:: $$Redis server port.$$ *($$Integer$$, default: `$$6379$$`)*
 $$spring.redis.sentinel.master$$:: $$Name of the Redis server.$$ *($$String$$, default: `$$<none>$$`)*
